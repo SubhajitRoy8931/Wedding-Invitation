@@ -150,6 +150,9 @@
   width: 96px;
   height: 96px;
   top: 49%;
+  z-index: 30;
+  cursor: pointer;
+  pointer-events: auto;
   background: radial-gradient(circle at 35% 30%, #fff0a0 0%, #e0bd4f 24%, #b18420 65%, #674b08 100%);
   box-shadow:
     0 12px 35px rgba(0,0,0,.7),
@@ -165,6 +168,7 @@
   inset: 7px;
   border: 1px solid rgba(59,44,5,.35);
   border-radius: 50%;
+  pointer-events: none;
 }
 
 .wax-seal span {
@@ -177,11 +181,10 @@
   50% { transform: translate(-50%,-50%) scale(1.045); box-shadow: 0 16px 42px rgba(0,0,0,.72), 0 0 28px rgba(212,175,55,.28), inset 0 3px 8px rgba(255,255,255,.65); }
 }
 
-/* The transparent button remains the seal click target. Its instruction is
-   positioned immediately below the seal instead of inside/on top of it. */
+/* The instruction is visual only. The wax seal itself is the click target. */
 .open-button {
   position: absolute;
-  z-index: 20;
+  z-index: 10;
   left: 50%;
   top: calc(49% + 67px);
   transform: translateX(-50%);
@@ -194,7 +197,8 @@
   color: transparent;
   font-size: 0;
   box-shadow: none;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
 }
 
 .open-button::after {
@@ -208,18 +212,16 @@
   letter-spacing: 1.6px;
   text-align: center;
   opacity: .98;
+  pointer-events: none;
 }
 
 .open-button:hover,
-.open-button:focus-visible {
+.open-button:focus-visible,
+.open-button:active {
   background: transparent;
   transform: translateX(-50%);
   box-shadow: none;
   outline: none;
-}
-
-.open-button:active {
-  transform: translateX(-50%);
 }
 
 .opening-kicker {
