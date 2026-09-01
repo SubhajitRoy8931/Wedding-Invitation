@@ -3,9 +3,15 @@
 const opening = document.getElementById('invitationOpening');
 const envelope = document.getElementById('royalEnvelope');
 const openButton = document.getElementById('openInvitation');
+const waxSeal = document.getElementById('waxSeal');
 const mainInvitation = document.getElementById('mainInvitation');
 
-openButton.addEventListener('click', () => {
+let invitationOpened = false;
+
+function openInvitation() {
+  if (invitationOpened) return;
+  invitationOpened = true;
+
   envelope.classList.add('is-open');
   openButton.disabled = true;
 
@@ -20,6 +26,27 @@ openButton.addEventListener('click', () => {
       opening.remove();
     }, 1000);
   }, 2200);
+}
+
+/* The wax seal is the actual interaction target. The instruction text below
+   it is intentionally non-interactive. */
+if (waxSeal) {
+  waxSeal.addEventListener('click', openInvitation);
+  waxSeal.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openInvitation();
+    }
+  });
+  waxSeal.setAttribute('role', 'button');
+  waxSeal.setAttribute('tabindex', '0');
+  waxSeal.setAttribute('aria-label', 'Touch the seal to open the invitation');
+}
+
+/* Keep the legacy button available for keyboard/fallback activation, but the
+   visible instruction itself is not the click target. */
+openButton.addEventListener('click', event => {
+  if (event.target === openButton) openInvitation();
 });
 
 /* Scroll reveal */
