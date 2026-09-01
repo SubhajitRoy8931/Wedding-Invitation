@@ -146,6 +146,7 @@
   box-shadow: inset 0 -1px rgba(252,224,138,.22);
 }
 
+/* The seal itself is the only opening control. */
 .wax-seal {
   width: 96px;
   height: 96px;
@@ -153,6 +154,10 @@
   z-index: 30;
   cursor: pointer;
   pointer-events: auto;
+  border: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
   background: radial-gradient(circle at 35% 30%, #fff0a0 0%, #e0bd4f 24%, #b18420 65%, #674b08 100%);
   box-shadow:
     0 12px 35px rgba(0,0,0,.7),
@@ -172,8 +177,15 @@
 }
 
 .wax-seal span {
+  position: relative;
+  z-index: 1;
   font-size: .82rem;
   letter-spacing: 1px;
+}
+
+.wax-seal:focus-visible {
+  outline: 2px solid #fce08a;
+  outline-offset: 5px;
 }
 
 @keyframes royalSealPulse {
@@ -181,47 +193,28 @@
   50% { transform: translate(-50%,-50%) scale(1.045); box-shadow: 0 16px 42px rgba(0,0,0,.72), 0 0 28px rgba(212,175,55,.28), inset 0 3px 8px rgba(255,255,255,.65); }
 }
 
-/* The instruction is visual only. The wax seal itself is the click target. */
-.open-button {
+/* The instruction is separate, visual-only text. It cannot receive clicks. */
+.seal-instruction {
   position: absolute;
-  z-index: 10;
   left: 50%;
   top: calc(49% + 67px);
   transform: translateX(-50%);
   width: 190px;
-  height: 44px;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background: transparent;
-  color: transparent;
-  font-size: 0;
-  box-shadow: none;
-  cursor: default;
-  pointer-events: none;
-}
-
-.open-button::after {
-  content: "TOUCH THE SEAL\A TO OPEN";
-  white-space: pre;
-  display: block;
+  margin: 0;
   color: #d4af37;
   font-family: var(--font-royal);
   font-size: .57rem;
   line-height: 1.65;
   letter-spacing: 1.6px;
   text-align: center;
-  opacity: .98;
   pointer-events: none;
+  user-select: none;
+  z-index: 12;
 }
 
-.open-button:hover,
-.open-button:focus-visible,
-.open-button:active {
-  background: transparent;
-  transform: translateX(-50%);
-  box-shadow: none;
-  outline: none;
+/* Legacy selector retained only to neutralize any older cached markup. */
+.open-button {
+  pointer-events: none !important;
 }
 
 .opening-kicker {
@@ -277,12 +270,12 @@
   .envelope-paper { inset: 12px 20px 10px; height: calc(min(62vw, 245px) - 25px); }
   .paper-names { font-size: 1.72rem; }
   .wax-seal { width: 82px; height: 82px; }
-  .open-button {
+  .seal-instruction {
     top: calc(48% + 58px);
     width: 180px;
-    height: 42px;
+    font-size: .5rem;
+    letter-spacing: 1.5px;
   }
-  .open-button::after { font-size: .5rem; letter-spacing: 1.5px; }
   .opening-kicker { bottom: 6%; }
 }
 
