@@ -9,6 +9,8 @@ openButton.addEventListener('click', () => {
   envelope.classList.add('is-open');
   openButton.disabled = true;
 
+  /* Give the cinematic envelope sequence time to finish before the
+     opening screen fades away. */
   setTimeout(() => {
     opening.classList.add('is-opening');
     mainInvitation.classList.remove('is-locked');
@@ -17,7 +19,7 @@ openButton.addEventListener('click', () => {
     setTimeout(() => {
       opening.remove();
     }, 1000);
-  }, 1250);
+  }, 2200);
 });
 
 /* Scroll reveal */
@@ -52,8 +54,6 @@ if (canvas) {
   canvas.width = width;
   canvas.height = height;
 
-  /* Remove the old CSS-generated heart so only the new, correctly scaled
-     canvas-based heart is visible. */
   wrap.style.width = `${width}px`;
   wrap.style.height = `${height}px`;
   wrap.style.maxWidth = '92vw';
@@ -78,8 +78,6 @@ if (canvas) {
   revealCanvas.style.zIndex = '1';
   wrap.insertBefore(revealCanvas, canvas);
 
-  /* The old HTML secret is hidden because the revealed date is now drawn
-     in the same coordinate system as the heart. */
   const oldSecret = wrap.querySelector('.scratch-secret');
   if (oldSecret) oldSecret.style.display = 'none';
 
@@ -88,26 +86,10 @@ if (canvas) {
   function heartPath(context) {
     context.beginPath();
     context.moveTo(width * 0.50, height * 0.94);
-    context.bezierCurveTo(
-      width * 0.43, height * 0.87,
-      width * 0.08, height * 0.65,
-      width * 0.08, height * 0.31
-    );
-    context.bezierCurveTo(
-      width * 0.08, height * 0.10,
-      width * 0.32, height * 0.04,
-      width * 0.50, height * 0.25
-    );
-    context.bezierCurveTo(
-      width * 0.68, height * 0.04,
-      width * 0.92, height * 0.10,
-      width * 0.92, height * 0.31
-    );
-    context.bezierCurveTo(
-      width * 0.92, height * 0.65,
-      width * 0.57, height * 0.87,
-      width * 0.50, height * 0.94
-    );
+    context.bezierCurveTo(width * 0.43, height * 0.87, width * 0.08, height * 0.65, width * 0.08, height * 0.31);
+    context.bezierCurveTo(width * 0.08, height * 0.10, width * 0.32, height * 0.04, width * 0.50, height * 0.25);
+    context.bezierCurveTo(width * 0.68, height * 0.04, width * 0.92, height * 0.10, width * 0.92, height * 0.31);
+    context.bezierCurveTo(width * 0.92, height * 0.65, width * 0.57, height * 0.87, width * 0.50, height * 0.94);
     context.closePath();
   }
 
@@ -117,10 +99,7 @@ if (canvas) {
     heartPath(revealCtx);
     revealCtx.clip();
 
-    const bg = revealCtx.createRadialGradient(
-      width * 0.5, height * 0.35, 10,
-      width * 0.5, height * 0.55, width * 0.58
-    );
+    const bg = revealCtx.createRadialGradient(width * 0.5, height * 0.35, 10, width * 0.5, height * 0.55, width * 0.58);
     bg.addColorStop(0, '#184a38');
     bg.addColorStop(0.7, '#0b2a20');
     bg.addColorStop(1, '#06140f');
@@ -138,8 +117,6 @@ if (canvas) {
     revealCtx.font = '500 17px Cinzel, serif';
     revealCtx.fillText('SUNDAY', width * 0.50, height * 0.39);
 
-    /* The date sits in the widest part of the heart and is sized to fit
-       completely inside the heart at all normal viewport sizes. */
     revealCtx.fillStyle = '#ffffff';
     revealCtx.font = '600 25px "Cormorant Garamond", Georgia, serif';
     revealCtx.fillText('13 September 2026', width * 0.50, height * 0.50);
@@ -173,7 +150,6 @@ if (canvas) {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    /* Subtle royal texture */
     ctx.globalAlpha = 0.16;
     ctx.fillStyle = '#fff3b8';
     for (let y = 15; y < height; y += 18) {
