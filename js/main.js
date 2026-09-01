@@ -89,7 +89,6 @@ if (canvas) {
 
     ctx.restore();
 
-    /* Royal outline */
     ctx.save();
     heartPath(ctx);
     ctx.strokeStyle = 'rgba(252, 224, 138, .75)';
@@ -103,19 +102,19 @@ if (canvas) {
   let scratching = false;
   let revealed = false;
   let lastCheck = 0;
+  let activePointerId = null;
 
   function getPoint(event) {
     const rect = canvas.getBoundingClientRect();
-    const source = event.touches ? event.touches[0] : event;
 
     return {
-      x: (source.clientX - rect.left) * (canvas.width / rect.width),
-      y: (source.clientY - rect.top) * (canvas.height / rect.height)
+      x: (event.clientX - rect.left) * (canvas.width / rect.width),
+      y: (event.clientY - rect.top) * (canvas.height / rect.height)
     };
   }
 
   function scratch(event) {
-    if (!scratching || revealed) return;
+    if (!scratching || revealed || event.pointerId !== activePointerId) return;
 
     event.preventDefault();
     const { x, y } = getPoint(event);
@@ -137,13 +136,26 @@ if (canvas) {
   }
 
   function startScratch(event) {
-    if (revealed) return;
+    if (revealed || scratching) return;
+
     scratching = true;
+    activePointerId = event.pointerId;
+
+    canvas.setPointerCapture(event.pointerId);
+    event.preventDefault();
     scratch(event);
   }
 
-  function stopScratch() {
+  function stopScratch(event) {
+    if (activePointerId !== null && event.pointerId !== activePointerId) return;
+
     scratching = false;
+
+    if (activePointerId !== null && canvas.hasPointerCapture(activePointerId)) {
+      canvas.releasePointerCapture(activePointerId);
+    }
+
+    activePointerId = null;
   }
 
   function checkReveal() {
@@ -173,12 +185,15 @@ if (canvas) {
     dateReveal.classList.add('is-revealed');
 
     launchConfetti();
-    dateReveal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    /* Intentionally do NOT scroll anywhere here.
+       The visitor remains in exactly the same position after scratching. */
   }
 
-  canvas.addEventListener('pointerdown', startScratch);
-  canvas.addEventListener('pointermove', scratch);
-  window.addEventListener('pointerup', stopScratch);
+  canvas.addEventListener('pointerdown', startScratch, { passive: false });
+  canvas.addEventListener('pointermove', scratch, { passive: false });
+  canvas.addEventListener('pointerup', stopScratch);
+  canvas.addEventListener('pointercancel', stopScratch);
 }
 
 /* Confetti celebration */
@@ -197,7 +212,6 @@ function launchConfetti() {
     piece.style.setProperty('--drift', `${-100 + Math.random() * 200}px`);
     piece.style.setProperty('--rotation', `${360 + Math.random() * 720}deg`);
 
-    /* Use the existing royal palette without introducing a new theme. */
     piece.style.color = i % 3 === 0 ? '#fce08a' : (i % 3 === 1 ? '#d4af37' : '#f7e7a9');
 
     document.body.appendChild(piece);
