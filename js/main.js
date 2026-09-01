@@ -267,6 +267,17 @@ if (canvas) {
     revealed = true;
     scratching = false;
 
+    // Once the date is revealed, restore normal mobile page scrolling.
+    // Also stop the canvas from receiving any further touch/pointer input.
+    canvas.style.touchAction = 'auto';
+    canvas.style.pointerEvents = 'none';
+
+    if (activePointerId !== null && canvas.hasPointerCapture(activePointerId)) {
+      canvas.releasePointerCapture(activePointerId);
+    }
+
+    activePointerId = null;
+
     ctx.clearRect(0, 0, width, height);
     scratchTip.textContent = 'The date is revealed';
 
@@ -283,9 +294,9 @@ if (canvas) {
     activePointerId = null;
   });
 
-  canvas.addEventListener('touchstart', event => event.preventDefault(), { passive: false });
-  canvas.addEventListener('touchmove', event => event.preventDefault(), { passive: false });
-  canvas.addEventListener('touchend', event => event.preventDefault(), { passive: false });
+  // Pointer events handle scratching. Do not add touch handlers that call
+  // preventDefault(), otherwise mobile browsers can keep page scrolling
+  // locked even after the scratch card has been revealed.
 }
 
 /* Confetti celebration */
