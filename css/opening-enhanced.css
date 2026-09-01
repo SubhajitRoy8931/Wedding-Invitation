@@ -177,55 +177,49 @@
   50% { transform: translate(-50%,-50%) scale(1.045); box-shadow: 0 16px 42px rgba(0,0,0,.72), 0 0 28px rgba(212,175,55,.28), inset 0 3px 8px rgba(255,255,255,.65); }
 }
 
-/* The existing button remains the click target. The instruction is now
-   displayed clearly below the seal in royal gold. */
+/* The transparent button remains the seal click target. Its instruction is
+   positioned immediately below the seal instead of inside/on top of it. */
 .open-button {
   position: absolute;
   z-index: 20;
   left: 50%;
-  top: 49%;
-  transform: translate(-50%, -50%);
-  width: 135px;
-  height: 135px;
+  top: calc(49% + 67px);
+  transform: translateX(-50%);
+  width: 190px;
+  height: 44px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 0;
   padding: 0;
   background: transparent;
   color: transparent;
   font-size: 0;
   box-shadow: none;
+  cursor: pointer;
 }
 
 .open-button::after {
   content: "TOUCH THE SEAL\A TO OPEN";
-  position: absolute;
-  top: calc(100% + 17px);
-  left: 50%;
-  transform: translateX(-50%);
   white-space: pre;
+  display: block;
   color: #d4af37;
   font-family: var(--font-royal);
-  font-size: .62rem;
-  font-weight: 500;
-  line-height: 1.7;
-  letter-spacing: 2px;
+  font-size: .57rem;
+  line-height: 1.65;
+  letter-spacing: 1.6px;
   text-align: center;
-  opacity: .95;
-  width: max-content;
-  pointer-events: none;
-  text-shadow: 0 1px 8px rgba(212,175,55,.18);
+  opacity: .98;
 }
 
 .open-button:hover,
 .open-button:focus-visible {
-  background: rgba(255,255,255,.03);
-  transform: translate(-50%, -50%) scale(1.04);
+  background: transparent;
+  transform: translateX(-50%);
   box-shadow: none;
   outline: none;
 }
 
 .open-button:active {
-  transform: translate(-50%, -50%) scale(.97);
+  transform: translateX(-50%);
 }
 
 .opening-kicker {
@@ -281,8 +275,12 @@
   .envelope-paper { inset: 12px 20px 10px; height: calc(min(62vw, 245px) - 25px); }
   .paper-names { font-size: 1.72rem; }
   .wax-seal { width: 82px; height: 82px; }
-  .open-button { width: 116px; height: 116px; }
-  .open-button::after { font-size: .5rem; top: calc(100% + 14px); letter-spacing: 1.7px; }
+  .open-button {
+    top: calc(48% + 58px);
+    width: 180px;
+    height: 42px;
+  }
+  .open-button::after { font-size: .5rem; letter-spacing: 1.5px; }
   .opening-kicker { bottom: 6%; }
 }
 
