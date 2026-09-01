@@ -1,0 +1,316 @@
+/* Enhanced Royal Opening — layered over the original opening styles */
+
+.opening-screen {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(38, 91, 69, .48) 0%, rgba(8, 30, 23, .92) 32%, #030b08 78%),
+    #030b08;
+  overflow: hidden;
+}
+
+.opening-screen::before,
+.opening-screen::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border: 1px solid rgba(212,175,55,.16);
+  pointer-events: none;
+}
+
+.opening-screen::after {
+  inset: 8.5%;
+  border-color: rgba(252,224,138,.07);
+  transform: scale(.985);
+}
+
+.royal-card-stage {
+  position: relative;
+  width: min(100%, 500px);
+  min-height: 650px;
+  justify-content: center;
+}
+
+.royal-card-stage::before {
+  content: "✦   M & S   ✦";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(247,231,169,.9);
+  font-family: var(--font-royal);
+  font-size: .72rem;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  animation: openingMonogram .8s ease .1s forwards;
+}
+
+.royal-card-stage::after {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  max-width: 90vw;
+  max-height: 90vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.12), rgba(212,175,55,0) 68%);
+  filter: blur(8px);
+  pointer-events: none;
+  opacity: 0;
+  animation: openingGlow 1.4s ease .15s forwards;
+}
+
+@keyframes openingMonogram {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); letter-spacing: 7px; }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); letter-spacing: 4px; }
+}
+
+@keyframes openingGlow {
+  from { opacity: 0; transform: scale(.75); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.royal-envelope {
+  width: 390px;
+  height: 275px;
+  margin-bottom: 70px;
+  filter: drop-shadow(0 30px 45px rgba(0,0,0,.72));
+  transform: translateY(12px) scale(.94);
+  opacity: 0;
+  animation: envelopeArrival .7s cubic-bezier(.2,.75,.2,1) .2s forwards;
+  z-index: 5;
+}
+
+@keyframes envelopeArrival {
+  from { opacity: 0; transform: translateY(32px) scale(.88); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.envelope-back {
+  background:
+    linear-gradient(135deg, rgba(252,224,138,.07), transparent 28%, rgba(0,0,0,.16)),
+    linear-gradient(145deg, #174735, #061a12 72%);
+  border: 1px solid rgba(212,175,55,.72);
+  box-shadow: inset 0 0 0 5px rgba(212,175,55,.035), inset 0 0 35px rgba(0,0,0,.38);
+}
+
+.envelope-back::before,
+.envelope-back::after {
+  content: "❧";
+  position: absolute;
+  color: rgba(212,175,55,.68);
+  font-size: 1.8rem;
+  opacity: .8;
+}
+
+.envelope-back::before { left: 15px; top: 10px; transform: rotate(-18deg); }
+.envelope-back::after { right: 15px; top: 10px; transform: scaleX(-1) rotate(-18deg); }
+
+.envelope-front {
+  background:
+    linear-gradient(135deg, rgba(212,175,55,.08), rgba(0,0,0,.2)),
+    #0b2a20;
+  border: 1px solid rgba(212,175,55,.52);
+  box-shadow: inset 0 -25px 35px rgba(0,0,0,.2);
+}
+
+.envelope-paper {
+  inset: 15px 25px 12px;
+  height: 236px;
+  background: radial-gradient(circle at center, #fff8df 0%, #f6ebc9 72%, #e4d3a3 100%);
+  border: 1px solid #c8a34c;
+  box-shadow: 0 5px 22px rgba(0,0,0,.28), inset 0 0 0 5px rgba(180,139,39,.08);
+  transform: translateY(12px) scale(.97);
+  transition: transform .8s cubic-bezier(.16,.78,.18,1), box-shadow .7s ease;
+}
+
+.envelope-paper::before,
+.envelope-paper::after {
+  content: "✦";
+  position: absolute;
+  color: rgba(166,127,30,.48);
+  font-size: 1rem;
+}
+
+.envelope-paper::before { top: 10px; left: 12px; }
+.envelope-paper::after { bottom: 10px; right: 12px; }
+
+.paper-ornament { font-size: 2rem; }
+.paper-kicker { letter-spacing: 3px; font-size: .68rem; }
+.paper-names { font-size: 2.05rem; }
+.paper-subtitle { letter-spacing: 2.5px; }
+
+.envelope-flap {
+  background:
+    linear-gradient(145deg, rgba(252,224,138,.06), transparent 35%),
+    linear-gradient(145deg, #1b4b39, #082117);
+  box-shadow: inset 0 -1px rgba(252,224,138,.22);
+}
+
+/* The seal itself is the only opening control. */
+.wax-seal {
+  width: 96px;
+  height: 96px;
+  top: 49%;
+  z-index: 30;
+  cursor: pointer;
+  pointer-events: auto;
+  border: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: radial-gradient(circle at 35% 30%, #fff0a0 0%, #e0bd4f 24%, #b18420 65%, #674b08 100%);
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.7),
+    0 0 0 5px rgba(212,175,55,.08),
+    inset 0 3px 8px rgba(255,255,255,.65),
+    inset 0 -7px 12px rgba(0,0,0,.5);
+  animation: royalSealPulse 2.8s ease-in-out .8s infinite;
+}
+
+.wax-seal:active {
+  transform: translate(-50%, -50%) scale(.94);
+}
+
+
+.wax-seal::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(59,44,5,.35);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.wax-seal span {
+  position: relative;
+  z-index: 1;
+  font-size: .82rem;
+  letter-spacing: 1px;
+}
+
+.wax-seal:focus-visible {
+  outline: 2px solid #fce08a;
+  outline-offset: 5px;
+}
+
+@keyframes royalSealPulse {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); box-shadow: 0 12px 35px rgba(0,0,0,.7), 0 0 0 5px rgba(212,175,55,.08), inset 0 3px 8px rgba(255,255,255,.65); }
+  50% { transform: translate(-50%,-50%) scale(1.045); box-shadow: 0 16px 42px rgba(0,0,0,.72), 0 0 28px rgba(212,175,55,.28), inset 0 3px 8px rgba(255,255,255,.65); }
+}
+
+/* The instruction is separate, visual-only text. It cannot receive clicks. */
+.seal-instruction {
+  position: absolute;
+  left: 50%;
+  top: calc(49% + 68px);
+  transform: translateX(-50%);
+  width: 190px;
+  margin: 0;
+  color: #d4af37;
+  font-family: var(--font-royal);
+  font-size: .57rem;
+  line-height: 1.65;
+  letter-spacing: 1.6px;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 12;
+}
+
+.opening-kicker {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: 3px;
+  opacity: 0;
+  animation: openingKicker .7s ease .7s forwards;
+  z-index: 10;
+}
+
+@keyframes openingKicker {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.royal-envelope.is-open {
+  animation: envelopeOpenLift .85s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes envelopeOpenLift {
+  0% { transform: translateY(0) scale(1); }
+  45% { transform: translateY(-10px) scale(1.015); }
+  100% { transform: translateY(-18px) scale(1.03); }
+}
+
+.royal-envelope.is-open .envelope-paper {
+  transform: translateY(-70px) scale(1.04);
+  box-shadow: 0 18px 38px rgba(0,0,0,.38), 0 0 40px rgba(212,175,55,.08);
+}
+
+.royal-envelope.is-open .envelope-flap {
+  transform: rotateX(-178deg);
+}
+
+.royal-envelope.is-open .wax-seal {
+  animation: sealRelease .7s ease forwards;
+}
+
+@keyframes sealRelease {
+  0% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  55% { opacity: 1; transform: translate(-50%,-50%) scale(1.12) rotate(-3deg); }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(.45) rotate(12deg); }
+}
+
+@media (max-width: 520px) {
+  .royal-card-stage { min-height: 560px; }
+  .royal-envelope { width: min(88vw, 350px); height: min(62vw, 245px); margin-bottom: 58px; }
+  .envelope-paper { inset: 12px 20px 10px; height: calc(min(62vw, 245px) - 25px); }
+  .paper-names { font-size: 1.72rem; }
+  .wax-seal { width: 82px; height: 82px; }
+  .royal-envelope.is-open { animation-duration: .68s; }
+  .royal-envelope.is-open .envelope-paper { transform: translateY(-48px) scale(1.02); }
+  .royal-envelope.is-open .envelope-flap { transition-duration: .65s; }
+  .royal-envelope.is-open .wax-seal { animation-duration: .45s; }
+  .seal-instruction {
+    top: calc(48% + 58px);
+    width: 180px;
+    font-size: .5rem;
+    letter-spacing: 1.5px;
+  }
+  .opening-kicker { bottom: 6%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .royal-card-stage::before,
+  .royal-card-stage::after,
+  .royal-envelope,
+  .opening-kicker,
+  .wax-seal { animation: none !important; opacity: 1; }
+}
+
+
+/* Reception map preview */
+.map-preview {
+  width: 100%;
+  max-width: 360px;
+  margin: 18px auto 20px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+
+.map-preview-frame {
+  display: block;
+  width: 100%;
+  height: 190px;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .map-preview { max-width: 320px; }
+  .map-preview-frame { height: 175px; }
+}
