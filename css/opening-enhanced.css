@@ -177,7 +177,8 @@
   50% { transform: translate(-50%,-50%) scale(1.045); box-shadow: 0 16px 42px rgba(0,0,0,.72), 0 0 28px rgba(212,175,55,.28), inset 0 3px 8px rgba(255,255,255,.65); }
 }
 
-/* The existing button remains the click target, but visually becomes the seal instruction. */
+/* The existing button remains the click target. The instruction is now
+   displayed clearly below the seal in royal gold. */
 .open-button {
   position: absolute;
   z-index: 20;
@@ -188,7 +189,7 @@
   height: 135px;
   border: 0;
   border-radius: 50%;
-  padding: 0 12px;
+  padding: 0;
   background: transparent;
   color: transparent;
   font-size: 0;
@@ -197,14 +198,22 @@
 
 .open-button::after {
   content: "TOUCH THE SEAL\A TO OPEN";
+  position: absolute;
+  top: calc(100% + 17px);
+  left: 50%;
+  transform: translateX(-50%);
   white-space: pre;
-  color: rgba(59,44,5,.9);
+  color: #d4af37;
   font-family: var(--font-royal);
-  font-size: .57rem;
-  line-height: 1.65;
-  letter-spacing: 1.6px;
+  font-size: .62rem;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 2px;
   text-align: center;
   opacity: .95;
+  width: max-content;
+  pointer-events: none;
+  text-shadow: 0 1px 8px rgba(212,175,55,.18);
 }
 
 .open-button:hover,
@@ -273,7 +282,7 @@
   .paper-names { font-size: 1.72rem; }
   .wax-seal { width: 82px; height: 82px; }
   .open-button { width: 116px; height: 116px; }
-  .open-button::after { font-size: .5rem; }
+  .open-button::after { font-size: .5rem; top: calc(100% + 14px); letter-spacing: 1.7px; }
   .opening-kicker { bottom: 6%; }
 }
 
