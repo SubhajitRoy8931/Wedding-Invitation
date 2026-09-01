@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A royal wedding reception invitation for Dr. Muktadir Ahmed and Sabnam Sultana.">
+  <title>Muktadir & Sabnam — Reception Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ROYAL CARD OPENING -->
+  <div id="invitationOpening" class="opening-screen" aria-label="Wedding invitation opening">
+    <div class="royal-card-stage">
+      <div class="royal-envelope" id="royalEnvelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper">
+          <div class="paper-ornament">❦</div>
+          <p class="paper-kicker">A Royal Invitation</p>
+          <p class="paper-names">Muktadir &amp; Sabnam</p>
+          <p class="paper-subtitle">Reception Celebration</p>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        <div class="wax-seal" id="waxSeal">
+          <span>M &amp; S</span>
+        </div>
+      </div>
+
+      <p class="opening-kicker">Together with their families</p>
+      <button type="button" class="open-button" id="openInvitation">
+        Open Invitation
+      </button>
+    </div>
+  </div>
+
+  <main id="mainInvitation" class="page-wrapper is-locked">
+
+    <!-- COUPLE INTRODUCTION -->
+    <section class="hero-section section reveal">
+      <div class="ornament-top">✦ ❦ ✦</div>
+      <p class="invitation-subtitle">With their families</p>
+      <h1 class="couple-names">
+        <span>Dr. Muktadir Ahmed</span>
+        <span class="ampersand">&amp;</span>
+        <span>Sabnam Sultana</span>
+      </h1>
+      <p class="invite-quote">A new chapter, a shared journey, and a celebration of love.</p>
+      <div class="ornament-bottom">❦</div>
+    </section>
+
+    <!-- ROYAL INVITATION MESSAGE -->
+    <section class="section card-section invitation-message reveal">
+      <h2 class="section-title">You Are Cordially Invited</h2>
+      <p class="formal-message">
+        With the blessings of their beloved families,
+        <strong>Dr. Muktadir Ahmed &amp; Sabnam Sultana</strong>
+        request the pleasure of your gracious presence and blessings
+        as they celebrate their wedding reception.
+      </p>
+      <p class="wedding-note">
+        Having been united in marriage on <strong>11 September 2026</strong>,
+        they look forward to celebrating this joyous occasion with you.
+      </p>
+    </section>
+
+    <!-- DATE ANTICIPATION -->
+    <section class="anticipation-section section reveal">
+      <div class="ornament-top">❦</div>
+      <p class="invitation-subtitle">A Special Date Awaits…</p>
+      <h2>Something worth revealing</h2>
+      <p>Scratch the heart to discover the day of the celebration.</p>
+    </section>
+
+    <!-- HEART SCRATCH -->
+    <section class="section scratch-section reveal">
+      <div class="heart-scratch-wrap">
+        <div class="scratch-secret">
+          <p class="secret-kicker">The Reception</p>
+          <p class="secret-day">Sunday</p>
+          <p class="secret-date">13 September 2026</p>
+          <p class="secret-hint">3:00 PM onwards</p>
+        </div>
+        <canvas id="scratchCanvas" class="scratch-canvas" aria-label="Scratch the heart to reveal the reception date"></canvas>
+      </div>
+      <p id="scratchTip" class="scratch-tip">Scratch the heart to reveal the date</p>
+    </section>
+
+    <!-- RECEPTION DATE REVEAL -->
+    <section id="dateReveal" class="date-reveal section" aria-live="polite">
+      <div class="ornament-top">✦</div>
+      <p class="invitation-subtitle">The Celebration Is Set</p>
+      <h2>Sunday</h2>
+      <div class="reveal-date">13 September 2026</div>
+      <p class="reveal-label">Reception Celebration</p>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="section card-section countdown-section reveal">
+      <h2 class="section-title">Counting Down to the Reception</h2>
+      <p class="section-desc">Until we gather to celebrate together.</p>
+
+      <div class="countdown-grid">
+        <div class="countdown-card">
+          <span id="days" class="countdown-val">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-card">
+          <span id="hours" class="countdown-val">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-card">
+          <span id="mins" class="countdown-val">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-card">
+          <span id="secs" class="countdown-val">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECEPTION -->
+    <section class="section reception-highlight reveal">
+      <div class="ornament-top">❦</div>
+      <p class="invitation-subtitle">The Reception</p>
+      <h2>Come Celebrate With Us</h2>
+      <div class="reception-details">
+        <div>
+          <span class="detail-label">Date</span>
+          <strong>Sunday, 13 September 2026</strong>
+        </div>
+        <div>
+          <span class="detail-label">Time</span>
+          <strong>3:00 PM onwards</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENUE -->
+    <section class="section card-section venue-section reveal">
+      <h2 class="section-title">The Venue</h2>
+      <div class="venue-box">
+        <div class="venue-icon">⌖</div>
+        <h3>Own Residence</h3>
+        <p>Halakura, Dhubri</p>
+        <a
+          class="gold-action-btn"
+          href="https://www.google.com/maps/search/?api=1&query=Halakura%2C%20Dhubri%2C%20Assam%2C%20India"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open in Google Maps
+        </a>
+      </div>
+    </section>
+
+    <!-- FINAL DATE REMINDER -->
+    <section class="final-reminder section reveal">
+      <div class="ornament-top">✦ ❦ ✦</div>
+      <p class="invitation-subtitle">One Last Reminder</p>
+      <h2>13 September 2026</h2>
+      <p>Sunday · 3:00 PM onwards</p>
+      <p class="final-location">Own Residence · Halakura, Dhubri</p>
+    </section>
+
+    <!-- ROYAL FAREWELL -->
+    <footer class="footer-section reveal">
+      <div class="footer-seal">M &amp; S</div>
+      <p class="footer-blessing">With Warm Regards</p>
+
+      <div class="hosts">
+        <p><strong>Mrs. Moriom Khatun</strong><span>Mother of the Groom</span></p>
+        <p><strong>Nazmin Sultana</strong><span>Sister of the Groom</span></p>
+      </div>
+
+      <p class="farewell-text">
+        Your presence, blessings, and good wishes<br>
+        will make this celebration even more special.
+      </p>
+
+      <p class="footer-names">Dr. Muktadir Ahmed &amp; Sabnam Sultana</p>
+      <p class="footer-dates">Wedding · 11 September 2026 &nbsp;|&nbsp; Reception · 13 September 2026</p>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
