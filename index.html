@@ -39,63 +39,66 @@
 
   <main id="mainInvitation" class="page-wrapper is-locked">
 
-    <!-- COUPLE INTRODUCTION -->
-    <section class="hero-section section reveal">
-      <div class="ornament-top">✦ ❦ ✦</div>
-      <p class="invitation-subtitle">With their families</p>
-      <h1 class="couple-names">
-        <span>Dr. Muktadir Ahmed</span>
-        <span class="ampersand">&amp;</span>
-        <span>Sabnam Sultana</span>
-      </h1>
-      <p class="invite-quote">A new chapter, a shared journey, and a celebration of love.</p>
-      <div class="ornament-bottom">❦</div>
+    <!-- ROYAL COUPLE HERO -->
+    <section class="hero-section section reveal royal-hero">
+      <div class="royal-hero-aura" aria-hidden="true"></div>
+
+      <div class="royal-invitation-card">
+        <div class="royal-frame" aria-hidden="true">
+          <span class="royal-corner royal-corner-tl">❧</span>
+          <span class="royal-corner royal-corner-tr">❧</span>
+          <span class="royal-corner royal-corner-bl">❧</span>
+          <span class="royal-corner royal-corner-br">❧</span>
+          <span class="royal-side-ornament royal-side-top">✦</span>
+          <span class="royal-side-ornament royal-side-bottom">✦</span>
+          <span class="royal-side-ornament royal-side-left">❦</span>
+          <span class="royal-side-ornament royal-side-right">❦</span>
+        </div>
+
+        <div class="royal-top-ornament" aria-hidden="true">
+          <span></span><i>❧</i><b>✦</b><i>❧</i><span></span>
+        </div>
+
+        <div class="royal-monogram" aria-hidden="true">
+          <div class="monogram-ring">
+            <span>M</span><small>&amp;</small><span>S</span>
+          </div>
+        </div>
+
+        <div class="royal-names">
+          <p class="name-prefix">DR.</p>
+          <h1><span>Muktadir<br>Ahmed</span>
+        <em>&amp;</em>
+        <span>Sabnam<br>Sultana</span>
+</h1>
+        </div>
+
+        <div class="royal-reception">
+          <span class="reception-line"></span>
+          <p>WEDDING RECEPTION</p>
+          <span class="reception-line"></span>
+        </div>
+
+        <div class="royal-bottom-ornament" aria-hidden="true">
+          <span></span><i>❦</i><span></span>
+        </div>
+        <div class="royal-card-shimmer" aria-hidden="true"></div>
+      </div>
     </section>
 
     <!-- ROYAL INVITATION MESSAGE -->
     <section class="section card-section invitation-message reveal">
       <h2 class="section-title">You Are Cordially Invited</h2>
-      <p class="formal-message">
-        With the blessings of their beloved families,
-        <strong>Dr. Muktadir Ahmed &amp; Sabnam Sultana</strong>
-        request the pleasure of your gracious presence and blessings
-        as they celebrate their wedding reception.
-      </p>
-      <p class="wedding-note">
-        Having been united in marriage on <strong>11 September 2026</strong>,
-        they look forward to celebrating this joyous occasion with you.
-      </p>
-    </section>
-
-    <!-- DATE ANTICIPATION -->
-    <section class="anticipation-section section reveal">
-      <div class="ornament-top">❦</div>
-      <p class="invitation-subtitle">A Special Date Awaits…</p>
-      <h2>Something worth revealing</h2>
-      <p>Scratch the heart to discover the day of the celebration.</p>
+      <p class="formal-message">With the blessings of their beloved families, <strong>Dr. Muktadir Ahmed &amp; Sabnam Sultana</strong> request the pleasure of your gracious presence and blessings as they celebrate their wedding reception.<br><br>As they begin their journey together on <strong>11 September 2026</strong>, they look forward to celebrating this joyous occasion with you at their reception.</p>
+      
     </section>
 
     <!-- HEART SCRATCH -->
     <section class="section scratch-section reveal">
       <div class="heart-scratch-wrap">
-        <div class="scratch-secret">
-          <p class="secret-kicker">The Reception</p>
-          <p class="secret-day">Sunday</p>
-          <p class="secret-date">13 September 2026</p>
-          <p class="secret-hint">3:00 PM onwards</p>
-        </div>
         <canvas id="scratchCanvas" class="scratch-canvas" aria-label="Scratch the heart to reveal the reception date"></canvas>
       </div>
-      <p id="scratchTip" class="scratch-tip">Scratch the heart to reveal the date</p>
-    </section>
-
-    <!-- RECEPTION DATE REVEAL -->
-    <section id="dateReveal" class="date-reveal section" aria-live="polite">
-      <div class="ornament-top">✦</div>
-      <p class="invitation-subtitle">The Celebration Is Set</p>
-      <h2>Sunday</h2>
-      <div class="reveal-date">13 September 2026</div>
-      <p class="reveal-label">Reception Celebration</p>
+      <p id="scratchTip" class="scratch-tip">Scratch the heart to reveal the reception date</p>
     </section>
 
     <!-- COUNTDOWN -->
@@ -148,12 +151,12 @@
         <h3>Own Residence</h3>
         <p>Halakura, Dhubri</p>
 
-        <div style="width:100%; max-width:400px; margin:18px auto 20px; overflow:hidden; border:1px solid rgba(212,175,55,.35); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.35);">
+        <div class="map-preview">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3275.521661841754!2d89.778815!3d26.249350999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDE0JzU3LjciTiA4OcKwNDYnNDMuNyJF!5e1!3m2!1sen!2sin!4v1788284624518!5m2!1sen!2sin"
             width="400"
             height="220"
-            style="display:block; width:100%; height:220px; border:0;"
+            class="map-preview-frame"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
